@@ -2,7 +2,7 @@ import { onBeforeUnmount, onMounted, ref } from "vue";
 
 const THEME_STORAGE_KEY = "eltavine-theme";
 const THEME_COLORS = {
-  dark: "#181716",
+  dark: "#000000",
   light: "#f6f5f2",
 };
 
