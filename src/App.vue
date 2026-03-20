@@ -7,9 +7,11 @@ import SiteFooter from "@/components/sections/SiteFooter.vue";
 import SiteHeader from "@/components/sections/SiteHeader.vue";
 import StackSection from "@/components/sections/StackSection.vue";
 import { contact, interests, navigation, profile, projects, stackGroups } from "@/content/site";
+import { useThemeMode } from "@/composables/useThemeMode";
 import { buildProtectedContact } from "@/lib/protected-contact";
 
 const resolvedContact = buildProtectedContact(contact);
+const { isDark, toggleTheme } = useThemeMode();
 </script>
 
 <template>
@@ -20,6 +22,8 @@ const resolvedContact = buildProtectedContact(contact);
       :email="resolvedContact.email"
       :avatar-url="profile.avatarUrl"
       :avatar-srcset="profile.avatarSrcset"
+      :is-dark="isDark"
+      @toggle-theme="toggleTheme"
     />
 
     <main class="mx-auto flex max-w-7xl flex-col gap-12 px-5 pb-14 pt-5 sm:px-8 sm:pb-16 sm:pt-6 lg:gap-20 lg:px-12">

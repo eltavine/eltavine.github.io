@@ -143,6 +143,16 @@
   }
 }
 
+.dark body {
+  background-image:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 28%),
+    linear-gradient(180deg, rgba(12, 12, 12, 0.9), rgba(18, 18, 18, 0.98));
+}
+
+.dark ::selection {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 #app {
   min-height: 100vh;
 }
@@ -174,6 +184,18 @@
     radial-gradient(circle at bottom left, rgba(17, 17, 17, 0.045), transparent 38%);
 }
 
+.dark .site-shell::before {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.dark .site-shell::after {
+  background-image:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.06), transparent 30%),
+    radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.045), transparent 36%);
+}
+
 .section-anchor {
   scroll-margin-top: 7rem;
 }
@@ -199,6 +221,14 @@
   box-shadow: 0 24px 80px rgba(17, 17, 17, 0.06);
 }
 
+.dark .surface-panel {
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+}
+
 .soft-rule {
   background: linear-gradient(90deg, transparent, rgba(17, 17, 17, 0.18), transparent);
+}
+
+.dark .soft-rule {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
 }

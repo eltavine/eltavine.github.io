@@ -4,10 +4,42 @@
     <meta charset="UTF-8">
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="theme-color" content="#f6f5f2">
+    <meta name="darkreader-lock">
     <title>Eltavine</title>
     <meta name="description" content="Eltavine's Personal Page">
     <meta name="keywords" content="Eltavine, Duck detector">
     <meta name="author" content="Eltavine">
+    <script>
+      (() => {
+        const storageKey = "eltavine-theme";
+        const root = document.documentElement;
+        const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+        const themeColors = {
+          light: "#f6f5f2",
+          dark: "#181716",
+        };
+
+        try {
+          const storedTheme = window.localStorage.getItem(storageKey);
+          const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          const resolvedTheme = storedTheme === "dark" || storedTheme === "light" ? storedTheme : systemTheme;
+
+          root.classList.toggle("dark", resolvedTheme === "dark");
+          root.style.colorScheme = resolvedTheme;
+          if (themeColorMeta) {
+            themeColorMeta.setAttribute("content", themeColors[resolvedTheme]);
+          }
+        } catch {
+          root.classList.remove("dark");
+          root.style.colorScheme = "light";
+          if (themeColorMeta) {
+            themeColorMeta.setAttribute("content", themeColors.light);
+          }
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="app"></div>

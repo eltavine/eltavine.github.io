@@ -1,4 +1,5 @@
 <script setup>
+import { MoonStar, SunMedium } from "lucide-vue-next";
 import { Button } from "@/components/ui/button";
 
 defineProps({
@@ -14,6 +15,10 @@ defineProps({
     type: String,
     required: true,
   },
+  isDark: {
+    type: Boolean,
+    default: false,
+  },
   name: {
     type: String,
     required: true,
@@ -23,6 +28,8 @@ defineProps({
     required: true,
   },
 });
+
+defineEmits(["toggle-theme"]);
 </script>
 
 <template>
@@ -58,6 +65,17 @@ defineProps({
             {{ item.label }}
           </a>
         </nav>
+
+        <Button
+          size="sm"
+          variant="outline"
+          class="size-8 rounded-full bg-background p-0"
+          :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+          :title="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+          @click="$emit('toggle-theme')"
+        >
+          <component :is="isDark ? SunMedium : MoonStar" class="size-4" />
+        </Button>
 
         <Button
           as="a"
