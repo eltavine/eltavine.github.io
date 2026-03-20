@@ -46,7 +46,7 @@ const fingerprintGroups = computed(() => props.contact.fingerprint.match(/.{1,4}
 
         <CardContent class="space-y-4 px-5 py-5 sm:px-6 sm:py-6">
           <div class="grid gap-3">
-            <div class="rounded-[1.25rem] border border-border/70 bg-background/70 p-4 sm:rounded-[1.5rem]">
+            <div class="card-subtle rounded-[1.25rem] p-4 sm:rounded-[1.5rem]">
               <div class="flex items-start gap-3">
                 <div class="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-full border border-border/70 bg-background">
                   <component :is="contactIcons.email" class="size-4" />
@@ -72,7 +72,7 @@ const fingerprintGroups = computed(() => props.contact.fingerprint.match(/.{1,4}
               </div>
             </div>
 
-            <div class="rounded-[1.25rem] border border-border/70 bg-background/70 p-4 sm:rounded-[1.5rem]">
+            <div class="card-subtle rounded-[1.25rem] p-4 sm:rounded-[1.5rem]">
               <div class="flex items-start gap-3">
                 <div class="mt-0.5 flex size-10 shrink-0 items-center justify-center rounded-full border border-border/70 bg-background">
                   <component :is="contactIcons.github" class="size-4" />
@@ -142,7 +142,7 @@ const fingerprintGroups = computed(() => props.contact.fingerprint.match(/.{1,4}
         </CardHeader>
 
         <CardContent class="space-y-5 px-5 py-5 sm:px-6 sm:py-6">
-          <div class="rounded-[1.25rem] border border-border/70 bg-background/70 p-4 sm:rounded-[1.5rem]">
+          <div class="card-subtle rounded-[1.25rem] p-4 sm:rounded-[1.5rem]">
             <p class="section-eyebrow">Fingerprint</p>
             <div class="mt-3 flex flex-wrap gap-x-2 gap-y-2 font-mono text-xs tracking-[0.12em] text-foreground sm:gap-x-3 sm:text-sm sm:tracking-[0.18em]">
               <span v-for="group in fingerprintGroups" :key="group">{{ group }}</span>
@@ -150,15 +150,15 @@ const fingerprintGroups = computed(() => props.contact.fingerprint.match(/.{1,4}
           </div>
 
           <div class="grid gap-3 sm:grid-cols-3">
-            <div class="rounded-[1.1rem] border border-border/70 bg-muted/35 p-4 sm:rounded-[1.25rem]">
+            <div class="card-muted rounded-[1.1rem] p-4 sm:rounded-[1.25rem]">
               <p class="section-eyebrow">Algorithm</p>
               <p class="mt-2 font-mono text-sm text-foreground">{{ contact.algorithm }}</p>
             </div>
-            <div class="rounded-[1.1rem] border border-border/70 bg-muted/35 p-4 sm:rounded-[1.25rem]">
+            <div class="card-muted rounded-[1.1rem] p-4 sm:rounded-[1.25rem]">
               <p class="section-eyebrow">Created</p>
               <p class="mt-2 font-mono text-sm text-foreground">{{ contact.createdAt }}</p>
             </div>
-            <div class="rounded-[1.1rem] border border-border/70 bg-muted/35 p-4 sm:rounded-[1.25rem]">
+            <div class="card-muted rounded-[1.1rem] p-4 sm:rounded-[1.25rem]">
               <p class="section-eyebrow">UID</p>
               <p class="mt-2 break-all font-mono text-sm text-foreground">{{ contact.uid }}</p>
             </div>

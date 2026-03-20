@@ -54,7 +54,7 @@ const props = defineProps({
           </div>
         </div>
 
-        <div class="max-w-xs min-w-0 rounded-[1.25rem] border border-border/70 bg-muted/35 p-4 sm:rounded-[1.5rem]">
+        <div class="card-muted max-w-xs min-w-0 rounded-[1.25rem] p-4 sm:rounded-[1.5rem]">
           <p class="section-eyebrow">Core idea</p>
           <p class="mt-3 break-words text-sm leading-7 text-muted-foreground">
             {{ project.emphasis }}
@@ -76,7 +76,7 @@ const props = defineProps({
         <div
           v-for="note in project.notes"
           :key="note"
-          class="rounded-[1.25rem] border border-border/70 bg-background/70 p-4 break-words text-sm leading-7 text-muted-foreground sm:rounded-[1.5rem]"
+          class="card-subtle rounded-[1.25rem] p-4 break-words text-sm leading-7 text-muted-foreground sm:rounded-[1.5rem]"
         >
           {{ note }}
         </div>
@@ -95,7 +95,7 @@ const props = defineProps({
             v-for="module in project.modules"
             :key="module.id"
             :value="module.id"
-            class="rounded-[1.25rem] border border-border/70 bg-background/70 px-4 sm:rounded-[1.5rem]"
+            class="card-subtle rounded-[1.25rem] px-4 sm:rounded-[1.5rem]"
           >
             <AccordionTrigger class="py-5 hover:no-underline">
               <div class="flex min-w-0 items-start gap-4">
