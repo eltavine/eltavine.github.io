@@ -14,7 +14,13 @@ const resolvedContact = buildProtectedContact(contact);
 
 <template>
   <div class="site-shell">
-    <SiteHeader :navigation="navigation" :name="profile.name" :email="resolvedContact.email" />
+    <SiteHeader
+      :navigation="navigation"
+      :name="profile.name"
+      :email="resolvedContact.email"
+      :avatar-url="profile.avatarUrl"
+      :avatar-srcset="profile.avatarSrcset"
+    />
 
     <main class="mx-auto flex max-w-7xl flex-col gap-12 px-5 pb-14 pt-5 sm:px-8 sm:pb-16 sm:pt-6 lg:gap-20 lg:px-12">
       <HeroSection :profile="profile" :contact="resolvedContact" />

@@ -2,6 +2,14 @@
 import { Button } from "@/components/ui/button";
 
 defineProps({
+  avatarSrcset: {
+    type: String,
+    default: "",
+  },
+  avatarUrl: {
+    type: String,
+    required: true,
+  },
   email: {
     type: String,
     required: true,
@@ -22,8 +30,13 @@ defineProps({
     <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-3.5 sm:px-6 sm:py-4 lg:px-10">
       <a href="#top" class="flex min-w-0 items-center gap-3">
         <img
-          src="/eltavine.png"
+          :src="avatarUrl"
+          :srcset="avatarSrcset || undefined"
+          sizes="40px"
           alt="Eltavine avatar"
+          width="80"
+          height="80"
+          decoding="async"
           class="size-10 shrink-0 rounded-full border border-border/70 object-cover"
         />
         <div class="min-w-0">

@@ -71,7 +71,13 @@ defineProps({
       <div class="mb-6 flex items-center gap-4">
         <img
           :src="profile.avatarUrl"
+          :srcset="profile.avatarSrcset || undefined"
+          sizes="(min-width: 640px) 80px, 64px"
           alt="Eltavine avatar"
+          width="160"
+          height="160"
+          decoding="async"
+          fetchpriority="high"
           class="size-16 shrink-0 rounded-[1.25rem] border border-border/70 object-cover sm:size-20"
         />
         <div class="min-w-0 space-y-1">

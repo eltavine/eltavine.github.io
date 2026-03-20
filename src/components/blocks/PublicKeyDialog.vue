@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, ref } from "vue";
 import CopyButton from "@/components/blocks/CopyButton.vue";
 import { Button } from "@/components/ui/button";
 import {
@@ -26,6 +26,8 @@ const props = defineProps({
   },
 });
 
+const isOpen = ref(false);
+const isLoading = ref(false);
 const publicKey = ref("");
 const loadError = ref("");
 
@@ -41,7 +43,13 @@ const displayKey = computed(() => {
   return "Loading public key...";
 });
 
-onMounted(async () => {
+async function loadPublicKey() {
+  if (publicKey.value || loadError.value || isLoading.value) {
+    return;
+  }
+
+  isLoading.value = true;
+
   try {
     const response = await fetch(props.downloadPath);
 
@@ -52,12 +60,22 @@ onMounted(async () => {
     publicKey.value = await response.text();
   } catch {
     loadError.value = "The public key could not be loaded from the current build output.";
+  } finally {
+    isLoading.value = false;
   }
-});
+}
+
+function handleOpenChange(nextOpen) {
+  isOpen.value = nextOpen;
+
+  if (nextOpen) {
+    void loadPublicKey();
+  }
+}
 </script>
 
 <template>
-  <Dialog>
+  <Dialog :open="isOpen" @update:open="handleOpenChange">
     <DialogTrigger as-child>
       <Button variant="outline" class="w-full rounded-full bg-background sm:w-auto">
         View public key

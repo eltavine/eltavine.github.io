@@ -31,7 +31,8 @@ export const navigation = [
 ];
 
 export const profile = {
-  avatarUrl: "/eltavine.png",
+  avatarUrl: "/eltavine-avatar-160.webp",
+  avatarSrcset: "/eltavine-avatar-80.webp 80w, /eltavine-avatar-160.webp 160w",
   headlineLines: ["Android,", "Windows,", "native."],
   lead: "I build across Android, low-level runtime surfaces, and service backends.",
   metrics: [
