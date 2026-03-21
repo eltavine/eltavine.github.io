@@ -25,15 +25,15 @@ defineProps({
         :key="group.title"
         class="surface-panel min-w-0 gap-0 rounded-[1.75rem] py-0"
       >
-        <CardHeader class="gap-3 px-6 py-6">
+        <CardHeader class="gap-3 px-5 py-5 sm:px-6 sm:py-6">
           <p class="section-eyebrow">{{ group.eyebrow }}</p>
           <CardTitle class="break-words text-2xl tracking-[-0.03em]">{{ group.title }}</CardTitle>
-          <CardDescription class="body-copy break-words text-sm leading-7 text-muted-foreground">
+          <CardDescription class="body-copy break-words text-sm leading-6 text-muted-foreground sm:leading-7">
             {{ group.description }}
           </CardDescription>
         </CardHeader>
 
-        <CardContent class="px-6 pb-6">
+        <CardContent class="px-5 pb-5 sm:px-6 sm:pb-6">
           <div class="flex flex-wrap gap-2">
             <IconBadge
               v-for="item in group.items"

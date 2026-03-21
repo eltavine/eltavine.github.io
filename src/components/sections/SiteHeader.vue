@@ -1,5 +1,6 @@
 <script setup>
-import { MoonStar, SunMedium } from "lucide-vue-next";
+import { Menu, MoonStar, SunMedium, X } from "lucide-vue-next";
+import { ref } from "vue";
 import { Button } from "@/components/ui/button";
 
 defineProps({
@@ -30,11 +31,21 @@ defineProps({
 });
 
 defineEmits(["toggle-theme"]);
+
+const isMenuOpen = ref(false);
+
+function closeMenu() {
+  isMenuOpen.value = false;
+}
+
+function toggleMenu() {
+  isMenuOpen.value = !isMenuOpen.value;
+}
 </script>
 
 <template>
-  <header class="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-xl">
-    <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-3.5 sm:px-6 sm:py-4 lg:px-10">
+  <header class="sticky top-0 z-40 border-b border-border/60 bg-background/86 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3.5 sm:px-6 sm:py-4 lg:px-10">
       <a href="#top" class="flex min-w-0 items-center gap-3">
         <img
           :src="avatarUrl"
@@ -54,13 +65,13 @@ defineEmits(["toggle-theme"]);
         </div>
       </a>
 
-      <div class="flex items-center gap-3">
-        <nav class="hidden items-center gap-5 md:flex">
+      <div class="flex items-center gap-2 sm:gap-3">
+        <nav class="hidden items-center gap-2 md:flex lg:gap-3">
           <a
             v-for="item in navigation"
             :key="item.href"
             :href="item.href"
-            class="font-mono text-xs uppercase tracking-[0.24em] text-muted-foreground hover:text-foreground"
+            class="nav-pill"
           >
             {{ item.label }}
           </a>
@@ -69,7 +80,18 @@ defineEmits(["toggle-theme"]);
         <Button
           size="sm"
           variant="outline"
-          class="size-8 rounded-full bg-background p-0"
+          class="size-9 rounded-full bg-background p-0 md:hidden"
+          :aria-label="isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'"
+          :title="isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'"
+          @click="toggleMenu"
+        >
+          <component :is="isMenuOpen ? X : Menu" class="size-4" />
+        </Button>
+
+        <Button
+          size="sm"
+          variant="outline"
+          class="size-9 rounded-full bg-background p-0"
           :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
           :title="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
           @click="$emit('toggle-theme')"
@@ -81,12 +103,25 @@ defineEmits(["toggle-theme"]);
           as="a"
           :href="`mailto:${email}`"
           size="sm"
-          variant="outline"
-          class="rounded-full bg-background px-3"
+          class="rounded-full px-4"
         >
-          Mail
+          Contact
         </Button>
       </div>
+    </div>
+
+    <div v-if="isMenuOpen" class="border-t border-border/60 px-4 py-3 md:hidden">
+      <nav class="grid gap-2">
+        <a
+          v-for="item in navigation"
+          :key="item.href"
+          :href="item.href"
+          class="nav-pill justify-start px-4 py-3"
+          @click="closeMenu"
+        >
+          {{ item.label }}
+        </a>
+      </nav>
     </div>
   </header>
 </template>

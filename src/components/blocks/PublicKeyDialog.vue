@@ -83,13 +83,13 @@ function handleOpenChange(nextOpen) {
     </DialogTrigger>
 
     <DialogContent class="max-w-3xl border-border/80 bg-card p-0 sm:rounded-[2rem]">
-      <div class="space-y-6 p-6 sm:p-8">
+      <div class="space-y-5 p-5 sm:space-y-6 sm:p-8">
         <DialogHeader class="space-y-3">
           <p class="section-eyebrow">PGP block</p>
-          <DialogTitle class="font-serif text-3xl tracking-[-0.04em] sm:text-4xl">
+          <DialogTitle class="font-serif text-[2rem] tracking-[-0.04em] sm:text-4xl">
             Public key
           </DialogTitle>
-          <DialogDescription class="text-sm leading-7 text-muted-foreground">
+          <DialogDescription class="text-sm leading-6 text-muted-foreground sm:leading-7">
             {{ uid }} / {{ keyId }}
           </DialogDescription>
         </DialogHeader>
@@ -114,7 +114,7 @@ function handleOpenChange(nextOpen) {
         </div>
 
         <pre
-          class="max-h-[55vh] overflow-auto rounded-[1.5rem] border border-border/70 bg-muted/30 p-4 font-mono text-xs leading-6 whitespace-pre-wrap break-all text-foreground"
+          class="max-h-[58vh] overflow-auto rounded-[1.25rem] border border-border/70 bg-muted/30 p-4 font-mono text-[0.72rem] leading-5 whitespace-pre-wrap break-all text-foreground sm:rounded-[1.5rem] sm:text-xs sm:leading-6"
         ><code>{{ displayKey }}</code></pre>
       </div>
     </DialogContent>

@@ -26,8 +26,12 @@ const { isDark, toggleTheme } = useThemeMode();
       @toggle-theme="toggleTheme"
     />
 
-    <main class="mx-auto flex max-w-7xl flex-col gap-12 px-5 pb-14 pt-5 sm:px-8 sm:pb-16 sm:pt-6 lg:gap-20 lg:px-12">
+    <main class="mx-auto flex max-w-7xl flex-col gap-10 px-4 pb-12 pt-4 sm:px-8 sm:pb-16 sm:pt-6 lg:gap-16 lg:px-12">
       <HeroSection :profile="profile" :contact="resolvedContact" />
+
+      <div class="soft-rule h-px w-full" />
+
+      <ProjectsSection :projects="projects" />
 
       <div class="soft-rule h-px w-full" />
 
@@ -35,15 +39,11 @@ const { isDark, toggleTheme } = useThemeMode();
 
       <div class="soft-rule h-px w-full" />
 
-      <InterestsSection :interests="interests" />
-
-      <div class="soft-rule h-px w-full" />
-
       <StackSection :stack-groups="stackGroups" />
 
       <div class="soft-rule h-px w-full" />
 
-      <ProjectsSection :projects="projects" />
+      <InterestsSection :interests="interests" />
     </main>
 
     <SiteFooter :profile="profile" :contact="resolvedContact" />

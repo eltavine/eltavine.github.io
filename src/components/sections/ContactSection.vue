@@ -39,7 +39,7 @@ const fingerprintGroups = computed(() => props.contact.fingerprint.match(/.{1,4}
               </CardTitle>
             </div>
           </div>
-          <CardDescription class="body-copy max-w-xl break-words text-sm leading-7 text-muted-foreground">
+          <CardDescription class="body-copy max-w-xl break-words text-sm leading-6 text-muted-foreground sm:leading-7">
             Email for direct contact, GitHub for public work.
           </CardDescription>
         </CardHeader>
@@ -53,7 +53,7 @@ const fingerprintGroups = computed(() => props.contact.fingerprint.match(/.{1,4}
                 </div>
                 <div class="min-w-0 flex-1">
                   <p class="section-eyebrow">Email</p>
-                  <p class="mt-2 break-all font-mono text-sm text-foreground sm:text-base">
+                  <p class="info-link mt-2 font-mono text-sm text-foreground sm:text-base">
                     {{ contact.email }}
                   </p>
                 </div>
@@ -79,7 +79,7 @@ const fingerprintGroups = computed(() => props.contact.fingerprint.match(/.{1,4}
                 </div>
                 <div class="min-w-0 flex-1">
                   <p class="section-eyebrow">GitHub</p>
-                  <p class="mt-2 break-all font-mono text-sm text-foreground sm:text-base">
+                  <p class="info-link mt-2 font-mono text-sm text-foreground sm:text-base">
                     {{ contact.githubLabel ?? contact.githubUrl }}
                   </p>
                 </div>
@@ -122,7 +122,7 @@ const fingerprintGroups = computed(() => props.contact.fingerprint.match(/.{1,4}
               </CardTitle>
             </div>
           </div>
-          <CardDescription class="body-copy max-w-xl break-words text-sm leading-7 text-muted-foreground">
+          <CardDescription class="body-copy max-w-xl break-words text-sm leading-6 text-muted-foreground sm:leading-7">
             You can inspect the armored key here, search by email on
             <a
               :href="contact.keyserverWebUrl"
@@ -144,7 +144,7 @@ const fingerprintGroups = computed(() => props.contact.fingerprint.match(/.{1,4}
         <CardContent class="space-y-5 px-5 py-5 sm:px-6 sm:py-6">
           <div class="card-subtle rounded-[1.25rem] p-4 sm:rounded-[1.5rem]">
             <p class="section-eyebrow">Fingerprint</p>
-            <div class="mt-3 flex flex-wrap gap-x-2 gap-y-2 font-mono text-xs tracking-[0.12em] text-foreground sm:gap-x-3 sm:text-sm sm:tracking-[0.18em]">
+            <div class="mt-3 flex flex-wrap gap-x-2 gap-y-2 font-mono text-xs tracking-[0.08em] text-foreground sm:gap-x-3 sm:text-sm sm:tracking-[0.14em]">
               <span v-for="group in fingerprintGroups" :key="group">{{ group }}</span>
             </div>
           </div>

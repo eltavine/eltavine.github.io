@@ -26,44 +26,44 @@ const props = defineProps({
       )
     "
   >
-    <CardHeader class="gap-5 border-b border-border/60 px-5 py-5 sm:px-8 sm:py-8">
-      <div class="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-        <div class="min-w-0 space-y-4">
+    <CardHeader class="gap-4 border-b border-border/60 px-5 py-5 sm:px-7 sm:py-7 lg:px-8 lg:py-8">
+      <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+        <div class="min-w-0 space-y-3.5">
           <div class="flex flex-wrap gap-2">
             <Badge
               variant="outline"
-              class="rounded-full border-border/70 bg-background/75 px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.24em] text-muted-foreground"
+              class="rounded-full border-border/70 bg-background/80 px-3 py-1.5 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-muted-foreground"
             >
               {{ project.section }}
             </Badge>
             <Badge
               variant="outline"
-              class="rounded-full border-border/70 bg-background/75 px-3 py-1 font-mono text-[0.68rem] uppercase tracking-[0.24em] text-muted-foreground"
+              class="rounded-full border-border/70 bg-background/80 px-3 py-1.5 font-mono text-[0.68rem] uppercase tracking-[0.16em] text-muted-foreground"
             >
               {{ project.status }}
             </Badge>
           </div>
 
-          <div class="space-y-3">
-            <CardTitle class="headline-regular break-words text-balance font-serif text-3xl sm:text-5xl">
+          <div class="space-y-2.5">
+            <CardTitle class="headline-regular break-words text-balance font-serif text-[2rem] leading-[1.02] sm:text-4xl lg:text-5xl">
               {{ project.title }}
             </CardTitle>
-            <CardDescription class="body-copy max-w-3xl break-words text-base leading-8 text-muted-foreground">
+            <CardDescription class="body-copy max-w-3xl break-words text-sm leading-7 text-muted-foreground sm:text-base sm:leading-8">
               {{ project.summary }}
             </CardDescription>
           </div>
         </div>
 
-        <div class="card-muted max-w-xs min-w-0 rounded-[1.25rem] p-4 sm:rounded-[1.5rem]">
+        <div class="card-muted max-w-sm min-w-0 rounded-[1.25rem] p-4 sm:rounded-[1.5rem]">
           <p class="section-eyebrow">Core idea</p>
-          <p class="mt-3 break-words text-sm leading-7 text-muted-foreground">
+          <p class="mt-3 break-words text-sm leading-6 text-muted-foreground sm:leading-7">
             {{ project.emphasis }}
           </p>
         </div>
       </div>
     </CardHeader>
 
-    <CardContent class="space-y-6 px-5 py-5 sm:space-y-8 sm:px-8 sm:py-8">
+    <CardContent class="space-y-5 px-5 py-5 sm:space-y-7 sm:px-7 sm:py-7 lg:px-8 lg:py-8">
       <div class="flex flex-wrap gap-2">
         <IconBadge
           v-for="item in project.stack"
@@ -76,7 +76,7 @@ const props = defineProps({
         <div
           v-for="note in project.notes"
           :key="note"
-          class="card-subtle rounded-[1.25rem] p-4 break-words text-sm leading-7 text-muted-foreground sm:rounded-[1.5rem]"
+          class="card-subtle rounded-[1.25rem] p-4 break-words text-sm leading-6 text-muted-foreground sm:rounded-[1.5rem] sm:leading-7"
         >
           {{ note }}
         </div>
@@ -85,7 +85,7 @@ const props = defineProps({
       <div v-if="project.modules" class="space-y-4">
         <div class="space-y-2">
           <p class="section-eyebrow">Module map</p>
-          <p class="max-w-3xl break-words text-sm leading-7 text-muted-foreground">
+          <p class="max-w-3xl break-words text-sm leading-6 text-muted-foreground sm:leading-7">
             {{ project.moduleSummary }}
           </p>
         </div>
@@ -107,7 +107,7 @@ const props = defineProps({
 
                 <div class="min-w-0 space-y-1">
                   <p class="break-words font-semibold text-foreground">{{ module.name }}</p>
-                  <p class="break-words text-sm leading-7 text-muted-foreground">
+                  <p class="break-words text-sm leading-6 text-muted-foreground sm:leading-7">
                     {{ module.description }}
                   </p>
                 </div>
@@ -115,7 +115,7 @@ const props = defineProps({
             </AccordionTrigger>
 
             <AccordionContent class="pb-5">
-              <div class="flex flex-wrap gap-2 pl-14">
+              <div class="flex flex-wrap gap-2 pl-0 sm:pl-14">
                 <IconBadge
                   v-for="item in module.stack"
                   :key="`${module.id}-${item.label}`"
