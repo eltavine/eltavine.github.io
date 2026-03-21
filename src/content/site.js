@@ -50,6 +50,11 @@ export const profile = {
 export const contact = {
   algorithm: "ed25519",
   createdAt: "2026-03-20",
+  emailParts: {
+    domain: "eltavine",
+    tld: "com",
+    user: "me",
+  },
   fingerprint: "46CC2913C0B6460FF498DE6009E517BD5F0084C8",
   githubLabel: "github.com/eltavine",
   githubUrl: "https://github.com/eltavine/",

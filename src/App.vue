@@ -6,11 +6,13 @@ import ProjectsSection from "@/components/sections/ProjectsSection.vue";
 import SiteFooter from "@/components/sections/SiteFooter.vue";
 import SiteHeader from "@/components/sections/SiteHeader.vue";
 import StackSection from "@/components/sections/StackSection.vue";
+import { useProtectedEmail } from "@/composables/useProtectedEmail";
 import { contact, interests, navigation, profile, projects, stackGroups } from "@/content/site";
 import { useThemeMode } from "@/composables/useThemeMode";
 import { buildProtectedContact } from "@/lib/protected-contact";
 
 const resolvedContact = buildProtectedContact(contact);
+const protectedEmail = useProtectedEmail(resolvedContact);
 const { isDark, toggleTheme } = useThemeMode();
 </script>
 
@@ -19,7 +21,7 @@ const { isDark, toggleTheme } = useThemeMode();
     <SiteHeader
       :navigation="navigation"
       :name="profile.name"
-      :email="resolvedContact.email"
+      :protected-email="protectedEmail"
       :avatar-url="profile.avatarUrl"
       :avatar-srcset="profile.avatarSrcset"
       :is-dark="isDark"
@@ -27,7 +29,7 @@ const { isDark, toggleTheme } = useThemeMode();
     />
 
     <main class="mx-auto flex max-w-7xl flex-col gap-10 px-4 pb-12 pt-4 sm:px-8 sm:pb-16 sm:pt-6 lg:gap-16 lg:px-12">
-      <HeroSection :profile="profile" :contact="resolvedContact" />
+      <HeroSection :profile="profile" :contact="resolvedContact" :protected-email="protectedEmail" />
 
       <div class="soft-rule h-px w-full" />
 
@@ -35,7 +37,7 @@ const { isDark, toggleTheme } = useThemeMode();
 
       <div class="soft-rule h-px w-full" />
 
-      <ContactSection :contact="resolvedContact" />
+      <ContactSection :contact="resolvedContact" :protected-email="protectedEmail" />
 
       <div class="soft-rule h-px w-full" />
 
@@ -46,6 +48,6 @@ const { isDark, toggleTheme } = useThemeMode();
       <InterestsSection :interests="interests" />
     </main>
 
-    <SiteFooter :profile="profile" :contact="resolvedContact" />
+    <SiteFooter :profile="profile" :contact="resolvedContact" :protected-email="protectedEmail" />
   </div>
 </template>

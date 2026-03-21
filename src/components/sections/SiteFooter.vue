@@ -6,6 +6,10 @@ defineProps({
     type: Object,
     required: true,
   },
+  protectedEmail: {
+    type: Object,
+    required: true,
+  },
   profile: {
     type: Object,
     required: true,
@@ -39,9 +43,13 @@ defineProps({
           <p class="section-eyebrow">Reach out</p>
           <div class="mt-3 space-y-2 text-sm text-muted-foreground">
             <p>
-              <a :href="contact.mailto" class="info-link hover:text-foreground">
-                {{ contact.email }}
-              </a>
+              <button
+                type="button"
+                class="info-link cursor-pointer text-left transition-colors hover:text-foreground"
+                @click="protectedEmail.requestReveal()"
+              >
+                {{ protectedEmail.isEmailRevealed.value ? protectedEmail.email.value : protectedEmail.revealLabel.value }}
+              </button>
             </p>
             <p class="font-mono text-xs tracking-[0.05em] sm:tracking-[0.08em]">
               <a :href="contact.githubUrl" class="info-link hover:text-foreground">

@@ -7,6 +7,10 @@ defineProps({
     type: Object,
     required: true,
   },
+  protectedEmail: {
+    type: Object,
+    required: true,
+  },
   profile: {
     type: Object,
     required: true,
@@ -105,12 +109,13 @@ defineProps({
       <div class="space-y-3.5 sm:space-y-4">
         <div class="flex items-start justify-between gap-3">
           <span class="section-eyebrow">Email</span>
-          <a
-            :href="contact.mailto"
-            class="info-link text-right font-mono text-sm tracking-[0.04em] text-foreground hover:text-muted-foreground"
+          <button
+            type="button"
+            class="info-link cursor-pointer text-right font-mono text-sm tracking-[0.04em] text-foreground transition-colors hover:text-muted-foreground"
+            @click="protectedEmail.requestReveal()"
           >
-            {{ contact.email }}
-          </a>
+            {{ protectedEmail.isEmailRevealed.value ? protectedEmail.email.value : protectedEmail.revealLabel.value }}
+          </button>
         </div>
 
         <div class="flex items-start justify-between gap-3">

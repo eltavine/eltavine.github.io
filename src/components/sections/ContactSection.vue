@@ -12,9 +12,22 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  protectedEmail: {
+    type: Object,
+    required: true,
+  },
 });
 
 const fingerprintGroups = computed(() => props.contact.fingerprint.match(/.{1,4}/g) ?? []);
+
+function handleEmailAction() {
+  if (props.protectedEmail.isEmailRevealed.value && props.protectedEmail.mailto.value) {
+    window.location.assign(props.protectedEmail.mailto.value);
+    return;
+  }
+
+  props.protectedEmail.requestReveal();
+}
 </script>
 
 <template>
@@ -54,19 +67,24 @@ const fingerprintGroups = computed(() => props.contact.fingerprint.match(/.{1,4}
                 <div class="min-w-0 flex-1">
                   <p class="section-eyebrow">Email</p>
                   <p class="info-link mt-2 font-mono text-sm text-foreground sm:text-base">
-                    {{ contact.email }}
+                    {{ protectedEmail.isEmailRevealed.value ? protectedEmail.email.value : 'Hidden until reveal' }}
                   </p>
                 </div>
               </div>
 
               <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-                <Button as="a" :href="contact.mailto" class="w-full rounded-full sm:w-auto">
-                  Send mail
+                <Button
+                  class="w-full rounded-full sm:w-auto"
+                  :variant="protectedEmail.isEmailRevealed.value ? 'default' : 'outline'"
+                  @click="handleEmailAction"
+                >
+                  {{ protectedEmail.isEmailRevealed.value ? 'Send mail' : protectedEmail.revealLabel.value }}
                 </Button>
                 <CopyButton
-                  :text="contact.email"
+                  :disabled="!protectedEmail.isEmailRevealed.value"
+                  :text="protectedEmail.email.value"
                   copied-label="Email copied"
-                  label="Copy email"
+                  :label="protectedEmail.isEmailRevealed.value ? 'Copy email' : 'Copy after reveal'"
                   class="w-full sm:w-auto"
                 />
               </div>
@@ -137,7 +155,7 @@ const fingerprintGroups = computed(() => props.contact.fingerprint.match(/.{1,4}
             <code class="rounded bg-muted px-1.5 py-0.5 font-mono text-[0.82em] text-foreground">
               hkps://keys.openpgp.org
             </code>
-            in your OpenPGP client with this email address.
+            in your OpenPGP client after revealing this email address.
           </CardDescription>
         </CardHeader>
 
@@ -160,7 +178,7 @@ const fingerprintGroups = computed(() => props.contact.fingerprint.match(/.{1,4}
             </div>
             <div class="card-muted rounded-[1.1rem] p-4 sm:rounded-[1.25rem]">
               <p class="section-eyebrow">UID</p>
-              <p class="mt-2 break-all font-mono text-sm text-foreground">{{ contact.uid }}</p>
+              <p class="mt-2 break-all font-mono text-sm text-foreground">{{ protectedEmail.uid.value }}</p>
             </div>
           </div>
 
@@ -174,7 +192,7 @@ const fingerprintGroups = computed(() => props.contact.fingerprint.match(/.{1,4}
             <PublicKeyDialog
               :download-path="contact.publicKeyUrl"
               :key-id="contact.keyId"
-              :uid="contact.uid"
+              :uid="protectedEmail.uid.value"
             />
             <Button
               as="a"

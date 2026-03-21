@@ -12,8 +12,8 @@ defineProps({
     type: String,
     required: true,
   },
-  email: {
-    type: String,
+  protectedEmail: {
+    type: Object,
     required: true,
   },
   isDark: {
@@ -36,6 +36,15 @@ const isMenuOpen = ref(false);
 
 function closeMenu() {
   isMenuOpen.value = false;
+}
+
+function handleContactAction(protectedEmail) {
+  if (protectedEmail.isEmailRevealed.value && protectedEmail.mailto.value) {
+    window.location.assign(protectedEmail.mailto.value);
+    return;
+  }
+
+  protectedEmail.requestReveal();
 }
 
 function toggleMenu() {
@@ -100,12 +109,12 @@ function toggleMenu() {
         </Button>
 
         <Button
-          as="a"
-          :href="`mailto:${email}`"
           size="sm"
           class="rounded-full px-4"
+          :variant="protectedEmail.isEmailRevealed.value ? 'default' : 'outline'"
+          @click="handleContactAction(protectedEmail)"
         >
-          Contact
+          {{ protectedEmail.isEmailRevealed.value ? 'Send mail' : protectedEmail.revealLabel.value }}
         </Button>
       </div>
     </div>
